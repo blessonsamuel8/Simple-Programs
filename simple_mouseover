@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Simple onmouseover</title>
+</head>
+<body>
+    <div align="center" id="mo" onmouseover="mover()" onmouseout="mout()"><p>your mouse over here</p></div>
+    <script>
+        function mover(){document.getElementById("mo").style.color="blue";}
+        function mout(){document.getElementById("mo").style.color="initial"}
+    </script>
+</body>
+</html>
