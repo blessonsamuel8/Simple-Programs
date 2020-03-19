@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    table {
+        background-color: #FF4136;
+        width: 300px;
+        height: 300px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    input[type="button"]{
+        background-color: whitesmoke;
+        color: black;
+        width: 100%;
+        height: 100%;
+        border: antiquewhite 5px;
+        font-weight: bold;
+    }
+    input[type="text"]{
+        background-color: ghostwhite;
+        border: darkgray 10px;
+        width: 100%;
+        height: 75%;
+    }
+</style>
+<body>
+    <script src="cal.js">    </script>
+    <table>
+        <tr>
+            <td colspan="3"><input type="text" value="" id="display"></td>
+            <td><input type="button" value="C" onclick="c.clr()"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="1" onclick="c.dis('1')"></td>
+            <td><input type="button" value="2" onclick="c.dis('2')"></td>
+            <td><input type="button" value="3" onclick="c.dis('3')"></td>
+            <td><input type="button" value="+" onclick="c.dis('+')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="4" onclick="c.dis('4')"></td>
+            <td><input type="button" value="5" onclick="c.dis('5')"></td>
+            <td><input type="button" value="6" onclick="c.dis('6')"></td>
+            <td><input type="button" value="-" onclick="c.dis('-')"></td>
+            <td><input type="button" value="%" onclick="c.dis('%')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="7" onclick="c.dis('7')"></td>
+            <td><input type="button" value="8" onclick="c.dis('8')"></td>
+            <td><input type="button" value="9" onclick="c.dis('9')"></td>
+            <td><input type="button" value="*" onclick="c.dis('*')"></td>
+            <td><input type="button" value="^" onclick="c.dis('**')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="0" onclick="c.dis('0')"></td>
+            <td><input type="button" value="." onclick="c.dis('.')"></td>
+            <td><input type="button" value="/" onclick="c.dis('/')"></td>
+            <td><input type="button" value="⌫" onclick="c.bs()"></td>
+            <td><input type="button" value="=" onclick="c.solve()"></td>
+        </tr>
+    </table>
+</body>
+</html>

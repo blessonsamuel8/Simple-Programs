@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple onmouseover</title>
+</head>
+<body>
+    <div align="center" id="mo" onmouseover="mover()" onmouseout="mout()"><p>your mouse over here</p></div>
+    <script>
+        function mover(){document.getElementById("mo").style.color="blue";}
+        function mout(){document.getElementById("mo").style.color="initial"}
+    </script>
+</body>
+</html>

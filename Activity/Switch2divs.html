@@ -1,0 +1,16 @@
+<html>
+    <title>Switch two div</title>
+    <body>
+        <div>
+            <p id="div1">I am div1</p>
+        </div>
+        <div><p id="div2">I am div2</p></div>
+        <button onclick="swapdiv()">click to swap</button>
+        <script>
+            function swapdiv(){
+                document.getElementById("div1").innerHTML="I am div2";
+                document.getElementById("div2").innerHTML="I am div1";
+            }
+        </script>
+    </body>
+</html>
