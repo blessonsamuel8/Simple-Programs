@@ -1,0 +1,22 @@
+body{
+    background-color: black;
+  }
+  #txt{
+    position: absolute;
+    top: 35%;
+    left: 35%;
+    width: 30%;
+    height: 30%;
+    font-size: 310%;
+    text-align: center;
+    font-weight: bolder;
+    background-color: transparent;
+    border: none;
+    color: #fa7d16;
+  }
+  #fw {
+    position: absolute;
+    top: 10%;
+    left: 31%;
+    z-index: -1;
+  }
