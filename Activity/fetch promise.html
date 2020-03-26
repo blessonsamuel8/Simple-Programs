@@ -1,0 +1,67 @@
+<html>
+    <head>
+      <title>promise</title>
+        <script>
+            function execute(){
+ //fetch from restcountries ApI
+ var fetch_rstcnt= fetch("https://restcountries.eu/rest/v2/all");
+             fetch_rstcnt.then(function(data){
+            return data.json();
+        })
+        .then(function(finaldata){
+        console.log(finaldata)
+        //Filter method to filter one particular country from rest countries 
+        var cname=document.getElementById("name").value;
+        
+        const filteredItems = finaldata.filter((item) => {
+          return item.name==cname;
+        }
+        );
+        //console.log(filteredItems[0].alpha2Code);	
+        var code=filteredItems[0].alpha2Code;
+        var flag=filteredItems[0].flag;
+        var name=filteredItems[0].capital;
+        //Display the flag for the country
+        document.getElementById("flag").src=flag;
+        document.getElementById("flag").style.width="100px"
+        //Fetch data from openweather API
+        var url="http://api.openweathermap.org/data/2.5/weather?q="+ name + "&appid=4b8257af63d0f5bda3a3f065cac5a035"
+        var fetch_weatApi= fetch(url);
+        fetch_weatApi.then(function(wdata){
+           return wdata.json();
+        }).then(function(wfdata){
+            console.log(wfdata)
+            //Display the weather details - max temp and min temp
+            document.getElementById("weather").innerHTML="<Strong><u>"+ "Weather details of " + (wfdata.name) + "<br><br>"
+            var min_temp=Number(JSON.stringify(wfdata.main.temp_min))
+            var max_temp=Number(JSON.stringify(wfdata.main.temp_max))
+            document.getElementById("weather").innerHTML+= "Minimum Temp:" + kel_cel(min_temp) + "C" + "<br>"
+            document.getElementById("weather").innerHTML+= "Maximum Temp:" + kel_cel(max_temp) + "C" 
+            console.log(wfdata.weather);
+            console.log(wfdata.sys.country);
+        })    
+    }).catch(function(err){
+        console.error(err);
+    })
+
+            }
+           
+    //function to convert kelvin to celcius
+    function kel_cel(kelvin)
+    {
+        return (kelvin-273).toFixed(2);
+    }
+    
+    </script>
+    </head>
+
+    <body>
+        <h2 align="center">Weather Summary</h2>
+<div id="country" align="center">
+    <input type="text" id="name" placeholder="Enter country name">
+    <input type="submit" id="submit" value="Submit" onclick="execute()">
+    <p id="weather" ></p>
+    <img id="flag"></img>
+</div>
+    </body>
+</html>

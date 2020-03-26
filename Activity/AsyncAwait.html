@@ -1,0 +1,76 @@
+<html>
+
+<head>
+  <title>promise</title>
+  <script>
+    async function fetchCountry() {
+
+      var countries = await fetch("https://restcountries.eu/rest/v2/all");
+      var cData = await countries.json();
+      console.log(cData);
+      const countryFlags = cData.map((item) => {
+        return item.flag;
+      }
+      );
+      for (i = 0; i < countryFlags.length; i++) {
+        if (cData[i].capital != "") {
+          var row = table.insertRow();
+
+          var cell1 = row.insertCell(0);
+          cell1.innerHTML = cData[i].name
+
+          var cell2 = row.insertCell(1);
+          cell2.innerHTML = cData[i].capital
+
+          var cell3 = row.insertCell(2);
+          img = document.createElement("img");
+          img.id = cData[i].capital;
+          img.src = countryFlags[i];
+          img.style.cursor="pointer";
+          img.style.width = "100px";
+          cell3.appendChild(img);
+
+          var cell4 = row.insertCell(3);
+          cell4.id = "cell " + i;
+          (function (i) {
+            img.onclick = function () {
+              getTemperature(cData[i].capital, i);
+            }
+          })(i);
+        }
+
+      }
+      document.body.appendChild(table)
+    }
+
+    async function getTemperature(cap, i) {
+     
+        var url = "http://api.openweathermap.org/data/2.5/weather?q=" + cap + "&appid=60e6eb111290694f4a3ffdb5d17f31d7"
+        var weather = await fetch(url);
+        var wData = await weather.json();
+        console.log(wData);
+        console.log(wData.main.temp_min);
+        document.getElementById("cell " + i).innerHTML = ((wData.main.temp) - 273).toFixed(2);
+        }
+
+    fetchCountry();
+
+
+  </script>
+</head>
+
+<body id="body">
+  <h2 align="center">Weather Summary</h2>
+  <h4>*Click on the flag to get the temperature</h4>
+  <table id="table">
+    <tr>
+      <td><b>Country</b></td>
+      <td><b>Capital</b></td>
+      <td> <b>Flags</b></td>
+      <td><b>Temperature <sup>o</sup>c</td>
+    </tr>
+  </table>
+  </div>
+</body>
+
+</html>
