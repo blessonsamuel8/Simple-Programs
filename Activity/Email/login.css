@@ -1,0 +1,17 @@
+p{
+    font-family: Comic Sans MS;
+    font-size: larger;
+}
+body{
+    margin-top: 10%;
+    text-align: center;
+    background-color: rgb(245, 245, 245);
+}
+input{
+    width: 300px;
+    height: 30px;
+    margin: 5px;
+    border-radius: 4px;
+    border: 1.5px solid rgb(230, 230, 230);
+    padding: 4px;
+}
