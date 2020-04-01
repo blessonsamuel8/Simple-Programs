@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script>
+        var header = {Accept : "application/json","content-Type" : "application/json"}
+        function signup(){
+            fetch("http://localhost:3000/signin",{
+                method : "POST",
+                headers : header,
+                body : JSON.stringify({email : document.getElementById("email").value, password : document.getElementById("pass").value})
+            }).then((r) => {
+                console.log(r.json())
+            })
+        }
+
+        function login(){
+            var resdata = fetch("http://localhost:3000/login", {
+                method : "POST",
+                headers : header,
+                body : JSON.stringify({email : document.getElementById("email").value, password : document.getElementById("pass").value})
+            }).then(data => data.json)
+
+            var tok = resdata.token;
+
+            localStorage.setItem('token',tok);
+
+            
+            fetch("http://localhost:3000/dashboard", {
+                method : "GET",
+                headers : {
+                    "content-Type" : "application/json",
+                    "Authorization" : tok
+                },
+                redirect : "follow"
+            }).then(r => r.json())
+            .then(rs => {
+                console.log(rs);
+                console.log("user verified");
+                localStorage.setItem("email",rs.email);
+            })
+            .catch(err => { console.log(err); })
+        }
+    </script>
+</head>
+<body>
+    <p>Login</p>
+    <form action="/" method="POST">
+        <input id="email" type="text" placeholder="Email" value=""><br>
+        <input id="pass" type="password" placeholder="Password" value=""><br>
+        <button type="submit" onclick="login(); return false;">Log-in</button>
+        <p>OR</p>
+        <button type="submit" onclick="signup(); return false;">Sign-up</button>
+    </form>
+
+<style>
+    p{
+    font-family: Comic Sans MS;
+    font-size: 20px;
+    }
+    body{
+        margin-top: 10%;
+        text-align: center;
+        background-color: rgb(245, 245, 245);
+    }
+    input{
+        width: 300px;
+        height: 30px;
+        margin: 5px;
+        border-radius: 4px;
+        border: 1.5px solid rgb(230, 230, 230);
+        padding: 4px;
+    }
+    button{
+        width: 300px;
+        height: 30px;
+        margin: 5px;
+        border-radius: 4px;
+        border: 2px solid rgb(202, 202, 202);
+        padding: 4px;
+        font-size: medium;
+    }
+</style>
+</body>
+</html>
