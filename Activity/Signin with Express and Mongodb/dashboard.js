@@ -1,12 +1,15 @@
 var a=[];
 var b=[];
 var j=0;
+var sub=[];
 var json=fetch("http://localhost:3000/data");
+sub = Object.keys(json).map((key) => json_data[key]);
+load();
 for(let i=1;i<=9;i++){
     a.push("groc"+i);
     b.push("img"+i);
 }
-var sub=[]
+
 function submit(){
     var addgroc = document.getElementById("addgroc").value;
     if(addgroc!=""){
